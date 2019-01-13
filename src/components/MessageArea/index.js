@@ -1,31 +1,18 @@
 import React from 'react'
+import safeEval from 'safe-eval'
 import MessageBody from '../MessageBody'
 import InputMessage from '../InputMessage'
 
 class MessageArea extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      messages: [],
-      messageText: '',
-      // modifier: text => text.toUpperCase()
-    }
-  }
-
   sendMessage = (e) => {
     if (e.key === 'Enter') {
-      console.log('pressed enter --> ', this.state.messageText)
-      let { messages, messageText} = this.state
-      messages = messages.slice()
-      const respond = this.props.modifier()
-      messageText = respond(messageText)
-      console.log('respond --> ', respond)
-      console.log('messageText --> ', messageText)
-      messages.push(messageText)
-      this.setState({
-        messages,
-        messageText: ''
-      })
+      let {
+        messageText,
+        code,
+      } = this.props
+      const respond = safeEval(code)
+      this.props.addChat(respond(messageText))
+      this.props.updateMessage('')
     }
   }
 
@@ -33,15 +20,12 @@ class MessageArea extends React.Component {
     let text = e.target.value.trim()
     if (text.length === 0) return
     console.log('text --> ', text)
-
-    this.setState({
-      messageText: text
-    })
-
+    console.log(this.props)
+    this.props.updateMessage(text)
   }
 
   render () {
-    let messageList = this.state.messages.map((el, i) => {
+    let messageList = this.props.messages.map((el, i) => {
       return (
         <li key={i} style={{
           listStyleType: 'none'
@@ -61,7 +45,7 @@ class MessageArea extends React.Component {
         <InputMessage
           send={this.sendMessage}
           type={this.typeMessage}
-          messageText={this.state.messageText}
+          messageText={this.props.messageText}
         />
       </React.Fragment>
     )
