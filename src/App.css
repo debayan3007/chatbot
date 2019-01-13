@@ -1,32 +1,60 @@
-.App {
+.Rectangle-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.Rectangle-code {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background-color: #161616;
+}
+.Rectangle-chatbox {
+  grid-column-start: 2;
+  grid-column-end: 8;
+  width: 100%;
+  background-color: #161616;
+}
+.Rectangle {
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.08);
+  background-color: #1f1f1f;
+}
+.ApplyChange-Button {
+  font-family: Quicksand;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
   text-align: center;
+  color: #454545;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.chatBox {
+  position: relative;
+  top: 15%;
+  padding: 25px
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.chatArea {
+  height: 400px;
+  overflow: auto;
+  border-radius: 2px;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.08);
+  background-color: #1f1f1f;
 }
+.inputBox {
+  width: 100%;
+  height: 72px;
+  border-radius: 2px;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.08);
+  background-color: #1f1f1f;
+  font-family: Quicksand;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #a9a9a9;
+  border-color: #3c3a3b;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
