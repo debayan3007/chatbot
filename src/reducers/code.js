@@ -11,10 +11,11 @@ function respond(inputText) {
 
   // When you are done, return a string
   // you want to send back to the user
-  return upper(inputText);
+  return CampK12.translate('bengali', inputText);
 }
 
 const upper = text => text.toUpperCase();
+
 `
 
 const initialState = {

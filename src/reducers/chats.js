@@ -1,6 +1,7 @@
 const initialState = {
   messages: [],
-  messageText: ''
+  messageText: '',
+  messageLoading: false
 }
 const chats = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +15,10 @@ const chats = (state = initialState, action) => {
     case 'UPDATE_MESSAGE':
       return Object.assign({}, state, {
         messageText: action.text
+      })
+    case 'MESSAGE_LADING':
+      return Object.assign({}, state, {
+        messageLoading: action.state
       })
     default:
       return state

@@ -17,3 +17,8 @@ export const updateCode = text => ({
   type: 'UPDATE_CODE',
   text
 })
+
+export const updateMessageLoad = state => ({
+  type: 'MESSAGE_LADING',
+  state
+})

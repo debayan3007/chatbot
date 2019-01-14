@@ -7,7 +7,6 @@ import {applyCode, updateCode} from '../../actions/index'
 
 class Code extends React.Component {
   editorDidMount(editor, monaco) {
-    console.log('editorDidMount', editor);
     editor.focus();
   }
 
@@ -21,7 +20,7 @@ class Code extends React.Component {
   }
 
   render() {
-    const code = this.props.code;
+    const {codeText} = this.props
     const options = {
       selectOnLineNumbers: true
     };
@@ -38,7 +37,7 @@ class Code extends React.Component {
           height="90vh"
           language="javascript"
           theme="vs-dark"
-          value={code}
+          value={codeText}
           options={options}
           onChange={this.onChange}
           editorDidMount={this.editorDidMount}
@@ -50,7 +49,7 @@ class Code extends React.Component {
 
 const mapStateToProps = (state) => ({
   code: state.code.code,
-  codeText: state.chats.codeText,
+  codeText: state.code.codeText
 })
 
 const mapDispatchToProps = dispatch => ({
