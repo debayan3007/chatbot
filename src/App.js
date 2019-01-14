@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import Code from './components/Code'
+import React, { Component } from 'react'
+
+import Editor from './components/Editor'
 import Chatbox from './components/Chatbox'
-import './App.css'
+
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers'
+
+import './App.css'
 
 const store = createStore(rootReducer)
 
@@ -13,15 +16,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className='Rectangle-container'>
-          <div
-            className='Rectangle-code'
-          >
-            <Code />
+          <div className='Rectangle-code' >
+            <Editor />
           </div>
-          
-          <div
-            className='Rectangle-chatbox'
-          >
+          <div className='Rectangle-chatbox'>
             <Chatbox />
           </div>
         </div>
@@ -30,4 +28,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
+

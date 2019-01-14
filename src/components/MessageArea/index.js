@@ -1,6 +1,6 @@
 import React from 'react'
 import safeEval from 'safe-eval'
-import MessageBody from '../MessageBody'
+import MessageBubble from '../MessageBubble'
 import InputMessage from '../InputMessage'
 import CampK12 from '../../lib/CampK12'
 
@@ -20,12 +20,12 @@ class MessageArea extends React.Component {
             if (text.length === 0) {
               return
             }
-            this.props.addChat(text)
+            this.props.addChat(text.trim())
             this.props.updateMessageLoad(false)
           })
-      } else if (typeof modifVal === 'function') {
-        if (messageText.length === 0) {
-          this.props.addChat(modifVal(messageText))
+      } else {
+        if (messageText.length > 0) {
+          this.props.addChat(String(modifVal).trim())
         }
       }
       this.props.updateMessage('')
@@ -33,7 +33,7 @@ class MessageArea extends React.Component {
   }
 
   typeMessage = (e) => {
-    let text = e.target.value.trim()
+    let text = e.target.value
     // if (text.length === 0) return
     this.props.updateMessage(text)
   }
@@ -44,19 +44,17 @@ class MessageArea extends React.Component {
         <li key={i} style={{
           listStyleType: 'none'
         }}>
-          <MessageBody text={el}/>
+          <MessageBubble text={el}/>
         </li>
       )
     })
-
-    console.log('messageLoading --> ', this.props.messageLoading)
 
     if (this.props.messageLoading) {
       messageList.push(
         <li key={'load'} style={{
           listStyleType: 'none'
         }}>
-          <MessageBody text='...'/>
+          <MessageBubble text='...'/>
         </li>
       )
     }

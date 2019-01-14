@@ -22,3 +22,8 @@ export const updateMessageLoad = state => ({
   type: 'MESSAGE_LADING',
   state
 })
+
+export const addTab = name => ({
+  type: 'ADD_TAB',
+  name
+})

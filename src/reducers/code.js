@@ -15,22 +15,24 @@ function respond(inputText) {
 }
 
 const upper = text => text.toUpperCase();
-
 `
 
 const initialState = {
     code: init,
-    codeText: init
+    codeText: init,
+    unsavedCode: false
   }
   const code = (state = initialState, action) => {
     switch (action.type) {
       case 'APPLY_CODE':
         return Object.assign({}, state, {
-          code: action.text
+          code: action.text,
+          unsavedCode: false
         })
       case 'UPDATE_CODE':
         return Object.assign({}, state, {
-          codeText: action.text
+          codeText: action.text,
+          unsavedCode: true
         })
       default:
         return state

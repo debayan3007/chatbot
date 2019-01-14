@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import '../../App.css'
 
-class InputMessage extends React.Component {
+class InputMessage extends Component {
   render () {
     return (
       <input

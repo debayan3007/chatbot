@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 const textStyle = {
   marginLeft: 30,
@@ -22,7 +22,7 @@ const textBoxStyle = {
   
 }
 
-class MessageBody extends React.Component {
+class MessageBody extends Component {
   render () {
     return (
       <React.Fragment>

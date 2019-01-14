@@ -1,37 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import MonacoEditor from 'react-monaco-editor';
-import {connect} from 'react-redux'
 
-import {applyCode, updateCode} from '../../actions/index'
-
-
-class Code extends React.Component {
+class Code extends Component {
   editorDidMount(editor, monaco) {
     editor.focus();
   }
 
-  onChange = (newValue, e) => {
-    this.props.updateCode(newValue)
-  }
-
-  setModifier = () => {
-    const modifier = `() => {${this.props.codeText};return respond}`
-    this.props.applyCode(modifier)
-  }
-
   render() {
-    const {codeText} = this.props
+    const {codeText = ''} = this.props
     const options = {
       selectOnLineNumbers: true
     };
     return (
       <div>
-        <button
-          onClick={this.setModifier}
-          className='ApplyChange-Button'
-        >
-          Apply Changes
-        </button>
         <MonacoEditor
           width="600" 
           height="90vh"
@@ -39,7 +20,7 @@ class Code extends React.Component {
           theme="vs-dark"
           value={codeText}
           options={options}
-          onChange={this.onChange}
+          onChange={this.props.onCodeChange}
           editorDidMount={this.editorDidMount}
         />
       </div>
@@ -47,14 +28,4 @@ class Code extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  code: state.code.code,
-  codeText: state.code.codeText
-})
-
-const mapDispatchToProps = dispatch => ({
-  applyCode: text => dispatch(applyCode(text)),
-  updateCode: text => dispatch(updateCode(text))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Code)
+export default Code

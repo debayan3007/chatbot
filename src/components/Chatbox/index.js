@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {Component} from 'react'
 import MessageArea from '../MessageArea'
 import {connect} from 'react-redux'
 import '../../App.css'
-// Actions
+
 import { addChat, updateMessage, updateMessageLoad } from '../../actions/index'
  
-class Chatbox extends React.Component {
+class Chatbox extends Component {
   render () {
     const {
       messages,
