@@ -10,49 +10,12 @@ import addButton from '../../shape.svg'
 
 import "react-tabs/style/react-tabs.css"
 
-
-const buttonStyleEnabled = {
-  width: 132,
-  height: 24,
-  float: 'right',
-  marginTop: 4,
-  borderRadius: 4,
-  borderColor: '#66d68d',
-  backgroundColor: '#66d68d',
-  fontFamily: 'Quicksand',
-  fontSize: 12,
-  fontWeight: 500,
-  fontStyle: 'normal',
-  fontStretch: 'normal',
-  lineHeight: 'normal',
-  letterSpacing: 'normal',
-  textAlign: 'center',
-  color: '#ffffff',
-}
-
-const buttonStyleDisabled = {
-  width: 132,
-  float: 'right',
-  marginTop: 4,
-  height: 24,
-  borderRadius: 4,
-  borderColor: '#282828',
-  backgroundColor: '#282828',
-  fontFamily: 'Quicksand',
-  fontSize: 12,
-  fontWeight: 500,
-  fontStyle: 'normal',
-  fontStretch: 'normal',
-  lineHeight: 'normal',
-  letterSpacing: 'normal',
-  textAlign: 'center',
-  color: '#454545',
-}
-
 const refreshIconStyle = {
   width: 11,
   height: 12,
-  objectFit: 'contain'
+  objectFit: 'contain',
+  outline: 'none',
+  float: 'left',
 }
 
 const tabStyle = {
@@ -157,8 +120,8 @@ class Editor extends Component {
       <div>
         <button
           onClick={this.setModifier}
-          className='ApplyChange-Button'
-          style={unsavedCode ? buttonStyleEnabled : buttonStyleDisabled}
+          // className='ApplyChange-Button'
+          className={unsavedCode ? 'ApplyChange-Button-Enabled' : 'ApplyChange-Button-Disabled'}
         >
           <img style={refreshIconStyle} src={refreshIcon} alt={'refresh icon'}/>
           <span>Apply Changes</span>

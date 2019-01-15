@@ -18,17 +18,43 @@
   box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.08);
   background-color: #1f1f1f;
 }
-.ApplyChange-Button {
-  font-family: Quicksand;
-  font-size: 12px;
+.ApplyChange-Button-Enabled {
+  width: 132px;
+  height: 24px;
+  float: right;
+  margin-top: 4px;
+  border-radius: 4px;
+  font-family: 'Quicksand';
+  font-size: 14px;
   font-weight: 500;
+  font-style: 'normal';
+  font-stretch: 'normal';
+  line-height: 'normal';
+  letter-spacing: 'normal';
+  text-align: 'center';
+  border-color: #66d68d;
+  background-color: #66d68d;
+  color: #ffffff;
   outline: none;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
+}
+.ApplyChange-Button-Disabled {
+  width: 132px;
+  height: 24px;
+  float: right;
+  margin-top: 4px;
+  border-radius: 4px;
+  font-family: 'Quicksand';
+  font-size: 14px;
+  font-weight: 500;
+  font-style: 'normal';
+  font-stretch: 'normal';
+  line-height: 'normal';
+  letter-spacing: 'normal';
+  text-align: 'center';
+  border-color: #282828;
+  background-color: #282828;
   color: #454545;
+  outline: none;
 }
 .chatBox {
   position: relative;
@@ -104,4 +130,3 @@
   text-align: center;
   padding-left: 5px;
 }
-
