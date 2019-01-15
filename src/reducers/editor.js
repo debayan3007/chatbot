@@ -9,7 +9,7 @@ const chats = (state = initialState, action) => {
       return Object.assign({}, state, {
         tabs: [
           ...state.tabs,
-          `file-${state.tabCount}`
+          `file-${state.tabCount}.js`
         ],
         tabCount: state.tabCount + 1
       })
