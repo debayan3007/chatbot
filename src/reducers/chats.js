@@ -17,7 +17,7 @@ const chats = (state = initialState, action) => {
     case 'ADD_ORIG_CHAT':
       return Object.assign({}, state, {
         messagesOrig: [
-          ...state.messages,
+          ...state.messagesOrig,
           action.text
         ]
       })

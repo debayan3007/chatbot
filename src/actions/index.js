@@ -32,3 +32,8 @@ export const addTab = name => ({
   type: 'ADD_TAB',
   name
 })
+
+export const deleteTab = name => ({
+  type: 'DELETE_TAB',
+  name
+})
