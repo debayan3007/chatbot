@@ -1,13 +1,22 @@
 const initialState = {
   messages: [],
   messageText: '',
-  messageLoading: false
+  messageLoading: false,
+  messagesOrig: [],
 }
+
 const chats = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_CHAT':
       return Object.assign({}, state, {
         messages: [
+          ...state.messages,
+          action.text
+        ],
+      })
+    case 'ADD_ORIG_CHAT':
+      return Object.assign({}, state, {
+        messagesOrig: [
           ...state.messages,
           action.text
         ]

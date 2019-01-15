@@ -3,6 +3,11 @@ export const addChat = text => ({
   text,
 })
 
+export const addOrigChat = text => ({
+  type: 'ADD_ORIG_CHAT',
+  text,
+})
+
 export const updateMessage = text => ({
   type: 'UPDATE_MESSAGE',
   text

@@ -5,12 +5,25 @@ import InputMessage from '../InputMessage'
 import CampK12 from '../../lib/CampK12'
 
 class MessageArea extends React.Component {
+  messagesEnd = React.createRef()
+
+  componentDidMount () {
+    this.scrollToBottom()
+  }
+  componentDidUpdate () {
+    this.scrollToBottom()
+  }
+  scrollToBottom = () => {
+    this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
   sendMessage = (e) => {
     if (e.key === 'Enter') {
       let {
         messageText,
         code,
       } = this.props
+      this.props.addOrigChat(messageText)
       const respond = safeEval(code, {CampK12})
       let modifVal = respond(messageText)
       if (typeof modifVal === 'object') {
@@ -29,6 +42,7 @@ class MessageArea extends React.Component {
         }
       }
       this.props.updateMessage('')
+      this.scrollToBottom()
     }
   }
 
@@ -39,38 +53,57 @@ class MessageArea extends React.Component {
   }
 
   render () {
+    const {
+      messagesOrig,
+      messageLoading,
+      messageText,
+    } = this.props
+  
     let messageList = this.props.messages.map((el, i) => {
       return (
         <li key={i} style={{
           listStyleType: 'none'
         }}>
+          <MessageBubble text={messagesOrig[i]} bot={true}/>
           <MessageBubble text={el}/>
         </li>
       )
     })
 
-    if (this.props.messageLoading) {
+    if (messageLoading) {
       messageList.push(
         <li key={'load'} style={{
           listStyleType: 'none'
         }}>
+          <MessageBubble text={messagesOrig[messagesOrig.length - 1]} bot={true}/>
           <MessageBubble text='...'/>
         </li>
       )
     }
+
+    messageList.push(
+      <li key={'scroller'} style={{
+        listStyleType: 'none'
+      }}>
+        <span ref={this.messagesEnd} />
+      </li>
+    )
+
     return (
       <React.Fragment>
         <div className='chatArea'>
-          <ul>
-            {messageList}
-          </ul>
+          <div>
+            <ul>
+              {messageList}
+            </ul>
+          </div>
         </div>
         <br />
         <InputMessage
           send={this.sendMessage}
           type={this.typeMessage}
-          messageText={this.props.messageText}
-          messageLoading={this.props.messageLoading}
+          messageText={messageText}
+          messageLoading={messageLoading}
         />
       </React.Fragment>
     )
