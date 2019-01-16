@@ -5,7 +5,7 @@ const apiKey = 'trnsl.1.1.20190114T032834Z.2e3293257d808dbf.d5b2acd8e27b94e44ec3
 const translate = (lan, text) => {
   return getLanguages()
   .then(refLang => {
-    const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${apiKey}&text=${text}&lang=en-${refLang[lan]}`
+    const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${apiKey}&text=${text}&lang=en-${refLang[lan.toLowerCase()]}`
     return axios.get(url)
   })
   .then(response => {

@@ -3,7 +3,13 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Code from '../Code'
 
 import { connect } from 'react-redux'
-import {applyCode, updateCode, deleteTab, addTab } from '../../actions/index'
+import {
+  applyCode,
+  updateCode,
+  deleteTab,
+  addTab,
+  updateCodes
+} from '../../actions/index'
 import refreshIcon from '../../refresh@3x.png'
 import addButton from '../../shape.svg'
 
@@ -62,8 +68,10 @@ class Editor extends Component {
 
   onCodeChange = (newValue, e) => {
     this.props.updateCode(newValue)
-    console.log(this.props.unsavedCode)
+  }
 
+  onCodeChangeTabs = (name, newValue, e) => {
+    this.props.updateCodes(name, newValue)
   }
 
   setModifier = () => {
@@ -93,6 +101,7 @@ class Editor extends Component {
       unsavedCode,
       addTab,
       codeText,
+      tabCode,
     } = this.props
 
     const tabComponents = tabs.map((tab, i) => (
@@ -110,9 +119,14 @@ class Editor extends Component {
       </Tab>
     ))
 
-    const panelComponents = tabs.map(tab => (
-      <TabPanel>
-        <Code />
+    const panelComponents = tabs.map((tab, i) => (
+      <TabPanel
+        key={i}
+      >
+        <Code
+          onCodeChange={this.onCodeChangeTabs.bind(this, tab)}
+          codeText={tabCode[tab]}
+        />
       </TabPanel>
     ))
 
@@ -155,13 +169,15 @@ const mapStateToProps = (state) => ({
   code: state.code.code,
   codeText: state.code.codeText,
   unsavedCode: state.code.unsavedCode,
+  tabCode: state.editor.tabCode,
 })
 
 const mapDispatchToProps = dispatch => ({
   addTab: name => dispatch(addTab(name)),
   applyCode: text => dispatch(applyCode(text)),
   updateCode: text => dispatch(updateCode(text)),
-  deleteTab: text => dispatch(deleteTab(text))
+  deleteTab: text => dispatch(deleteTab(text)),
+  updateCodes: (name, text) => dispatch(updateCodes(name, text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor)

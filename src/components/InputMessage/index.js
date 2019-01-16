@@ -10,6 +10,7 @@ class InputMessage extends Component {
         onKeyPress={this.props.send}
         onChange={this.props.type}
         value={this.props.messageText}
+        placeholder='Type message here...'
       />
     )
   }

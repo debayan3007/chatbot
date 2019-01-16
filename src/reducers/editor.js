@@ -1,9 +1,13 @@
 const initialState = {
   tabs: [],
-  tabCount: 1
+  tabCount: 1,
+  tabCode: {}
 }
 
 const chats = (state = initialState, action) => {
+  let tabCode = {
+    ...state.tabCode
+  }
   switch (action.type) {
     case 'ADD_TAB':
       return Object.assign({}, state, {
@@ -14,6 +18,7 @@ const chats = (state = initialState, action) => {
         tabCount: state.tabCount + 1
       })
     case 'DELETE_TAB':
+      delete tabCode[action.name]
       return Object.assign({}, state, {
         tabs: [...state.tabs].filter(el => {
           if (el === action.name) {
@@ -22,7 +27,12 @@ const chats = (state = initialState, action) => {
             return true
           }
         }),
-        // tabs: []
+        tabCode,
+      })
+    case 'UPDATE_CODE_TABS':
+      tabCode[action.name] = action.text
+      return Object.assign({}, state, {
+        tabCode,
       })
     default:
       return state

@@ -37,3 +37,9 @@ export const deleteTab = name => ({
   type: 'DELETE_TAB',
   name
 })
+
+export const updateCodes = (name, text) => ({
+  type: 'UPDATE_CODE_TABS',
+  name,
+  text,
+})
